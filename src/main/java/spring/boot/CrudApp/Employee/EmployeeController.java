@@ -12,8 +12,13 @@ import java.util.Map;
 @RequestMapping("/api/employee")
 public class EmployeeController {
 
-    @Autowired
+    final
     EmployeeRepository employeeRepository;
+
+    public EmployeeController(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
+
     @GetMapping("/get-all-employees")
     public List<EmployeeEntity> getAllEmployee(){
         List<EmployeeEntity> allEmployeelist = employeeRepository.findAll();

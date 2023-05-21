@@ -1,10 +1,9 @@
 package spring.boot.CrudApp.Employee;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "employees")
 public class EmployeeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,20 +21,20 @@ public class EmployeeEntity {
     public EmployeeEntity() {
     }
 
-    public EmployeeEntity(Integer employeeId, String name, String location, String emailId) {
-        this.employeeId = employeeId;
+    public EmployeeEntity(String name, String location, String emailId) {
+//        this.employeeId = employeeId;
         this.name = name;
         this.location = location;
         this.emailId = emailId;
     }
 
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
-    }
+//    public Integer getEmployeeId() {
+//        return employeeId;
+//    }
+//
+//    public void setEmployeeId(Integer employeeId) {
+//        this.employeeId = employeeId;
+//    }
 
     public String getName() {
         return name;
