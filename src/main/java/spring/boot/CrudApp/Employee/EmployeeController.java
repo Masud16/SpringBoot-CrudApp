@@ -54,4 +54,10 @@ public class EmployeeController {
     {
       return employeeService.deleteEmployee(employeeId);
     }
+    @GetMapping("/get-employee/selected-emp")
+    public List<EmployeeEntity> getEmployees(@RequestParam(value = "name", required = false) List<String> names,
+                               @RequestParam(value = "employeeId", required = false) List<Integer> employeeIds) {
+        return employeeService.getEmployees(names,employeeIds);
+    }
+
 }

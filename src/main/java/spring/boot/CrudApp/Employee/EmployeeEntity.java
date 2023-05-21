@@ -22,19 +22,19 @@ public class EmployeeEntity {
     }
 
     public EmployeeEntity(String name, String location, String emailId) {
-//        this.employeeId = employeeId;
+        this.employeeId = employeeId;
         this.name = name;
         this.location = location;
         this.emailId = emailId;
     }
 
-//    public Integer getEmployeeId() {
-//        return employeeId;
-//    }
-//
-//    public void setEmployeeId(Integer employeeId) {
-//        this.employeeId = employeeId;
-//    }
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
 
     public String getName() {
         return name;

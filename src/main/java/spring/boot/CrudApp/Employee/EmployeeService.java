@@ -2,6 +2,7 @@ package spring.boot.CrudApp.Employee;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +25,8 @@ public class EmployeeService {
     public EmployeeEntity getEmployeebyId( Integer employeeId)
 
     {
-        EmployeeEntity employeeEntity = employeeRepository.findById(employeeId).get();
+        EmployeeEntity employeeEntity = employeeRepository.findCustom(employeeId);
+//        EmployeeEntity employeeEntity = employeeRepository.findById(employeeId).get();
 
         return employeeEntity;
     }
@@ -49,11 +51,24 @@ public class EmployeeService {
 
     public Map<String, Boolean> deleteEmployee(Integer employeeId)
     {
-        EmployeeEntity employee = employeeRepository.findById(employeeId).get();
+//        EmployeeEntity employee = employeeRepository.findById(employeeId).get();
+        EmployeeEntity employee = employeeRepository.findCustom(employeeId);
 
         employeeRepository.delete(employee);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
+    }
+
+    public List<EmployeeEntity> getEmployees(List<String> names, List<Integer> employeeIds) {
+        if (names != null && employeeIds != null) {
+            return employeeRepository.findAllByEmployeeIdInAndNameIn(names, employeeIds);
+        } else if (names != null) {
+            return employeeRepository.findByNameIn(names);
+        } else if (employeeIds != null) {
+            return employeeRepository.findByEmployeeIdIn(employeeIds);
+        } else {
+            return employeeRepository.findAll();
+        }
     }
 }

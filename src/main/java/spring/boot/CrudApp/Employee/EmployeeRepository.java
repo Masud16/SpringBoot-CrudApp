@@ -1,10 +1,25 @@
 package spring.boot.CrudApp.Employee;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface EmployeeRepository
-        extends JpaRepository<EmployeeEntity,Integer> {
+        extends JpaRepository<EmployeeEntity, Integer> {
 
+    List<EmployeeEntity> findByNameIn(@Param("names") List<String> names);
+
+    List<EmployeeEntity> findByEmployeeIdIn(@Param("employeeIds") List<Integer> employeeIds);
+
+    List<EmployeeEntity> findAllByEmployeeIdInAndNameIn(@Param("names") List<String> names, @Param("employeeIds") List<Integer> employeeIds);
+
+    @Query("select emp from EmployeeEntity emp where emp.employeeId=?1")
+    EmployeeEntity findCustom(Integer id);
+
+    @Query("select emp from EmployeeEntity emp where emp.employeeId=:id")
+    List<EmployeeEntity> findCustomWithParameter(@Param("id") Integer id);
 }
