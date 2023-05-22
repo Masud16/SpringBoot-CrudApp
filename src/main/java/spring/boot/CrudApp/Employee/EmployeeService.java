@@ -84,4 +84,14 @@ public class EmployeeService {
     public List<Map<String,Object>> getEmployeeColumns2(List<Integer> employeeId) {
         return employeeRepository.getEmployeeColumns2(employeeId);
     }
+
+
+    public List<EmployeeEntity> getEmployeeColumns3(List<Integer> employeeId) {
+        return employeeRepository.getEmployeeColumns3(employeeId);
+    }
+
+
+    public int getSummOfId() {
+        return employeeRepository.getSummOfId();
+    }
 }

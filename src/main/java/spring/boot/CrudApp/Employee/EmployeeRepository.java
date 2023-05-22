@@ -1,5 +1,6 @@
 package spring.boot.CrudApp.Employee;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -34,9 +35,9 @@ public interface EmployeeRepository
     @Query("SELECT emp.name as name ,emp.location as location FROM EmployeeEntity emp where emp.employeeId in :employeeId")
     List<Map<String,Object>> getEmployeeColumns2(@Param("employeeId") List<Integer> employeeId);
 
+    @Query("SELECT emp FROM EmployeeEntity emp where emp.employeeId in :employeeId")
+    List<EmployeeEntity> getEmployeeColumns3(@Param("employeeId") List<Integer> employeeId);
 
-
-    
-
-
+    @Query("SELECT sum(emp.employeeId) FROM EmployeeEntity emp")
+    int getSummOfId();
 }
