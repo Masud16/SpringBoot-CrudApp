@@ -2,6 +2,7 @@ package spring.boot.CrudApp.Employee;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
@@ -70,5 +71,17 @@ public class EmployeeService {
         } else {
             return employeeRepository.findAll();
         }
+    }
+    public List<Object[]> getColumns() {
+        return employeeRepository.getColumns();
+    }
+
+    public List<Object[]> getEmployeeColumns(List<Integer> employeeId) {
+        return employeeRepository.getEmployeeColumns(employeeId);
+    }
+
+
+    public List<Map<String,Object>> getEmployeeColumns2(List<Integer> employeeId) {
+        return employeeRepository.getEmployeeColumns2(employeeId);
     }
 }

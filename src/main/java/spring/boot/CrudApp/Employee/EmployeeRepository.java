@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface EmployeeRepository
@@ -22,4 +23,20 @@ public interface EmployeeRepository
 
     @Query("select emp from EmployeeEntity emp where emp.employeeId=:id")
     List<EmployeeEntity> findCustomWithParameter(@Param("id") Integer id);
+
+    @Query("SELECT emp.name,emp.location FROM EmployeeEntity emp where emp.employeeId=1")
+    List<Object[]> getColumns();
+
+    @Query("SELECT emp.name,emp.location FROM EmployeeEntity emp where emp.employeeId in :employeeId")
+    List<Object[]> getEmployeeColumns(@Param("employeeId") List<Integer> employeeId);
+
+
+    @Query("SELECT emp.name as name ,emp.location as location FROM EmployeeEntity emp where emp.employeeId in :employeeId")
+    List<Map<String,Object>> getEmployeeColumns2(@Param("employeeId") List<Integer> employeeId);
+
+
+
+    
+
+
 }

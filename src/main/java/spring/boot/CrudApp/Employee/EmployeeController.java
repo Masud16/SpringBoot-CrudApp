@@ -59,5 +59,22 @@ public class EmployeeController {
                                @RequestParam(value = "employeeId", required = false) List<Integer> employeeIds) {
         return employeeService.getEmployees(names,employeeIds);
     }
+    @GetMapping("/get-employee/selected-column")
+    public List<Object[]> getColumns() {
+        return employeeService.getColumns();
+    }
+
+    @GetMapping("/get-employee/selected-emp-column")
+    public List<Object[]> getEmployeeColumns(@RequestParam(value = "id", required = false) List<Integer> employeeId) {
+        return employeeService.getEmployeeColumns(employeeId);
+    }
+
+    @GetMapping("/get-employee/selected-emp-column2")
+    public List<Map<String,Object>> getEmployeeColumns2(@RequestParam(value = "id", required = false) List<Integer> employeeId) {
+        return employeeService.getEmployeeColumns2(employeeId);
+    }
+
+
+
 
 }
