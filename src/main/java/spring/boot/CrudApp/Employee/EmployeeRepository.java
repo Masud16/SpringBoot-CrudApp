@@ -16,7 +16,7 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Intege
 
     List<EmployeeEntity> findByEmployeeIdIn(List<Integer> employeeIds);
 
-    List<EmployeeEntity> findByEmployeeIdInOrNameIn(List<Integer> employeeIds,List<String> names);
+    List<EmployeeEntity> findByEmployeeIdInOrNameIn(List<Integer> employeeIds, List<String> names);
 
     @Query("select emp from EmployeeEntity emp where emp.employeeId=?1")
     EmployeeEntity findCustom(Integer id);
@@ -32,7 +32,7 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Intege
 
 
     @Query("SELECT emp.name as name ,emp.location as location FROM EmployeeEntity emp where emp.employeeId in :employeeId")
-    List<Map<String,Object>> getEmployeeColumns2(@Param("employeeId") List<Integer> employeeId);
+    List<Map<String, Object>> getEmployeeColumns2(@Param("employeeId") List<Integer> employeeId);
 
     @Query("SELECT emp FROM EmployeeEntity emp where emp.employeeId in :employeeId")
     List<EmployeeEntity> getEmployeeColumns3(@Param("employeeId") List<Integer> employeeId);

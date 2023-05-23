@@ -19,13 +19,12 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public List<EmployeeEntity> getAllEmployee(){
+    public List<EmployeeEntity> getAllEmployee() {
         List<EmployeeEntity> allEmployeelist = employeeRepository.findAll();
         return allEmployeelist;
     }
-    public EmployeeEntity getEmployeebyId( Integer employeeId)
 
-    {
+    public EmployeeEntity getEmployeebyId(Integer employeeId) {
         EmployeeEntity employeeEntity = employeeRepository.findCustom(employeeId);
 //        EmployeeEntity employeeEntity = employeeRepository.findById(employeeId).get();
 
@@ -50,8 +49,7 @@ public class EmployeeService {
         return ResponseEntity.ok(updatedEmployee);
     }
 
-    public Map<String, Boolean> deleteEmployee(Integer employeeId)
-    {
+    public Map<String, Boolean> deleteEmployee(Integer employeeId) {
 //        EmployeeEntity employee = employeeRepository.findById(employeeId).get();
         EmployeeEntity employee = employeeRepository.findCustom(employeeId);
 
@@ -72,6 +70,7 @@ public class EmployeeService {
             return employeeRepository.findAll();
         }
     }
+
     public List<Object[]> getColumns() {
         return employeeRepository.getColumns();
     }
@@ -81,7 +80,7 @@ public class EmployeeService {
     }
 
 
-    public List<Map<String,Object>> getEmployeeColumns2(List<Integer> employeeId) {
+    public List<Map<String, Object>> getEmployeeColumns2(List<Integer> employeeId) {
         return employeeRepository.getEmployeeColumns2(employeeId);
     }
 

@@ -13,7 +13,7 @@ import java.util.Map;
 @RequestMapping("/api/employee")
 public class EmployeeController {
 
-//    final
+    //    final
 //    EmployeeRepository employeeRepository;
 //
 //    public EmployeeController(EmployeeRepository employeeRepository) {
@@ -27,15 +27,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/get-all-employees")
-    public List<EmployeeEntity> getAllEmployee(){
+    public List<EmployeeEntity> getAllEmployee() {
         return employeeService.getAllEmployee();
     }
 
     @GetMapping("/get-employee/{id}")
-    public EmployeeEntity getEmployeebyId(@PathVariable(value = "id") Integer employeeId)
-
-    {
-       return employeeService.getEmployeebyId(employeeId);
+    public EmployeeEntity getEmployeebyId(@PathVariable(value = "id") Integer employeeId) {
+        return employeeService.getEmployeebyId(employeeId);
     }
 
     @PostMapping("/create-employees")
@@ -48,19 +46,20 @@ public class EmployeeController {
     public ResponseEntity<EmployeeEntity> updateEmployee(@PathVariable(value = "id") Integer employeeId,
                                                          @RequestBody EmployeeEntity employeeDetails) {
 
-        return employeeService.updateEmployee(employeeId,employeeDetails);
+        return employeeService.updateEmployee(employeeId, employeeDetails);
     }
 
     @DeleteMapping("/delete-employees/{id}")
-    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Integer employeeId)
-    {
-      return employeeService.deleteEmployee(employeeId);
+    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Integer employeeId) {
+        return employeeService.deleteEmployee(employeeId);
     }
+
     @GetMapping("/get-employee/selected-emp/{name}/{employeeId}")
     public List<EmployeeEntity> getEmployees(@PathVariable(value = "name") List<String> names,
                                              @PathVariable(value = "employeeId") List<Integer> employeeIds) {
-        return employeeService.getEmployees(names,employeeIds);
+        return employeeService.getEmployees(names, employeeIds);
     }
+
     @GetMapping("/get-employee/selected-column")
     public List<Object[]> getColumns() {
         return employeeService.getColumns();
@@ -72,7 +71,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/get-employee/selected-emp-column2") //using hashmap
-    public List<Map<String,Object>> getEmployeeColumns2(@RequestParam(value = "id", required = false) List<Integer> employeeId) {
+    public List<Map<String, Object>> getEmployeeColumns2(@RequestParam(value = "id", required = false) List<Integer> employeeId) {
         return employeeService.getEmployeeColumns2(employeeId);
     }
 
@@ -81,11 +80,11 @@ public class EmployeeController {
 
         List<EmployeeEntity> results = employeeService.getEmployeeColumns3(employeeId);
 
-        List<EmployeeDTO> finalResult=new ArrayList<>();
+        List<EmployeeDTO> finalResult = new ArrayList<>();
 
-        for(EmployeeEntity x : results){
+        for (EmployeeEntity x : results) {
 
-            EmployeeDTO obj=new EmployeeDTO();
+            EmployeeDTO obj = new EmployeeDTO();
 
             obj.setName(x.getName());
             obj.setLocation(x.getLocation());
@@ -99,7 +98,7 @@ public class EmployeeController {
     @GetMapping("/get-employee/selected-emp-column4") //sum of all employeeIDs
     public ResponseEntity<?> getEmployeeColumns4(@RequestParam(value = "id", required = false) List<Integer> employeeId) {
 
-        int summation= employeeService.getSummOfId();
+        int summation = employeeService.getSummOfId();
 
         return new ResponseEntity<>(summation, HttpStatus.OK);
     }
