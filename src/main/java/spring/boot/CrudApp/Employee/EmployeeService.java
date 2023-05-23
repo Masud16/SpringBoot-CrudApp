@@ -1,5 +1,6 @@
 package spring.boot.CrudApp.Employee;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,4 +94,10 @@ public class EmployeeService {
     public int getSummOfId() {
         return employeeRepository.getSummOfId();
     }
+
+    List<EmployeeEntity> customFindUsingEmpIdAndName(List<Integer> employeeIds, List<String> names)
+    {
+        return employeeRepository.customFindUsingEmpIdAndName(employeeIds,names);
+    }
+
 }

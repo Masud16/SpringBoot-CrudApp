@@ -102,5 +102,10 @@ public class EmployeeController {
 
         return new ResponseEntity<>(summation, HttpStatus.OK);
     }
+    @GetMapping("/get-employee/selected-emp-custom-find/{id}/{name}")
+    public List<EmployeeEntity> customFindUsingEmpIdAndName(@PathVariable(value = "id") List<Integer> employeeIds, @PathVariable(value = "name")  List<String> names)
+    {
+        return employeeService.customFindUsingEmpIdAndName(employeeIds,names);
+    }
 
 }
