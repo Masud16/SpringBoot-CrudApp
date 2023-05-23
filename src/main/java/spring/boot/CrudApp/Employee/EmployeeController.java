@@ -56,9 +56,9 @@ public class EmployeeController {
     {
       return employeeService.deleteEmployee(employeeId);
     }
-    @GetMapping("/get-employee/selected-emp")
-    public List<EmployeeEntity> getEmployees(@RequestParam(value = "name", required = false) List<String> names,
-                               @RequestParam(value = "employeeId", required = false) List<Integer> employeeIds) {
+    @GetMapping("/get-employee/selected-emp/{name}/{employeeId}")
+    public List<EmployeeEntity> getEmployees(@PathVariable(value = "name") List<String> names,
+                                             @PathVariable(value = "employeeId") List<Integer> employeeIds) {
         return employeeService.getEmployees(names,employeeIds);
     }
     @GetMapping("/get-employee/selected-column")

@@ -63,7 +63,7 @@ public class EmployeeService {
 
     public List<EmployeeEntity> getEmployees(List<String> names, List<Integer> employeeIds) {
         if (names != null && employeeIds != null) {
-            return employeeRepository.findAllByEmployeeIdInAndNameIn(names, employeeIds);
+            return employeeRepository.findByEmployeeIdInOrNameIn(employeeIds, names);
         } else if (names != null) {
             return employeeRepository.findByNameIn(names);
         } else if (employeeIds != null) {

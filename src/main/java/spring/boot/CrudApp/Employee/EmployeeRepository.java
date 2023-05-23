@@ -10,14 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public interface EmployeeRepository
-        extends JpaRepository<EmployeeEntity, Integer> {
+public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Integer> {
 
-    List<EmployeeEntity> findByNameIn(@Param("names") List<String> names);
+    List<EmployeeEntity> findByNameIn(List<String> names);
 
-    List<EmployeeEntity> findByEmployeeIdIn(@Param("employeeIds") List<Integer> employeeIds);
+    List<EmployeeEntity> findByEmployeeIdIn(List<Integer> employeeIds);
 
-    List<EmployeeEntity> findAllByEmployeeIdInAndNameIn(@Param("names") List<String> names, @Param("employeeIds") List<Integer> employeeIds);
+    List<EmployeeEntity> findByEmployeeIdInOrNameIn(List<Integer> employeeIds,List<String> names);
 
     @Query("select emp from EmployeeEntity emp where emp.employeeId=?1")
     EmployeeEntity findCustom(Integer id);
