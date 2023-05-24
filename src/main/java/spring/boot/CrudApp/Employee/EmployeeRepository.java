@@ -16,11 +16,6 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Intege
 
     List<EmployeeEntity> findByEmployeeIdIn(List<Integer> employeeIds);
 
-    List<EmployeeEntity> findByEmployeeIdInOrNameIn(List<Integer> employeeIds, List<String> names);
-
-    @Query("select emp.name,emp.location from EmployeeEntity emp where emp.employeeId=:empId or emp.name=:nam")
-    List<EmployeeEntity> customFindUsingEmpIdAndName(@Param("empId") List<Integer> employeeIds, @Param("nam") List<String> names);
-
     @Query("select emp from EmployeeEntity emp where emp.employeeId=?1")
     EmployeeEntity findCustom(Integer id);
 
@@ -42,4 +37,10 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Intege
 
     @Query("SELECT sum(emp.employeeId) FROM EmployeeEntity emp")
     int getSummOfId();
+
+    List<EmployeeEntity> findByEmployeeIdInOrNameIn(List<Integer> employeeIds, List<String> names);
+
+    @Query("select emp from EmployeeEntity emp where emp.employeeId In :empId or emp.name In :nam")
+    List<EmployeeEntity> customFindUsingEmpIdAndName(@Param("empId") List<Integer> employeeIds, @Param("nam") List<String> names);
+
 }

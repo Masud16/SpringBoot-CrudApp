@@ -54,12 +54,6 @@ public class EmployeeController {
         return employeeService.deleteEmployee(employeeId);
     }
 
-    @GetMapping("/get-employee/selected-emp/{name}/{employeeId}")
-    public List<EmployeeEntity> getEmployees(@PathVariable(value = "name") List<String> names,
-                                             @PathVariable(value = "employeeId") List<Integer> employeeIds) {
-        return employeeService.getEmployees(names, employeeIds);
-    }
-
     @GetMapping("/get-employee/selected-column")
     public List<Object[]> getColumns() {
         return employeeService.getColumns();
@@ -102,8 +96,15 @@ public class EmployeeController {
 
         return new ResponseEntity<>(summation, HttpStatus.OK);
     }
+
+    @GetMapping("/get-employee/selected-emp/{name}/{employeeId}")
+    public List<EmployeeEntity> getEmployees(@PathVariable(value = "name") List<String> names,
+                                             @PathVariable(value = "employeeId") List<Integer> employeeIds) {
+        return employeeService.getEmployees(names, employeeIds);
+    }
     @GetMapping("/get-employee/selected-emp-custom-find/{id}/{name}")
-    public List<EmployeeEntity> customFindUsingEmpIdAndName(@PathVariable(value = "id") List<Integer> employeeIds, @PathVariable(value = "name")  List<String> names)
+    public List<EmployeeEntity> customFindUsingEmpIdAndName(@PathVariable(value = "id") List<Integer> employeeIds,
+                                                            @PathVariable(value = "name")  List<String> names)
     {
         return employeeService.customFindUsingEmpIdAndName(employeeIds,names);
     }

@@ -95,7 +95,7 @@ public class EmployeeService {
         return employeeRepository.getSummOfId();
     }
 
-    List<EmployeeEntity> customFindUsingEmpIdAndName(List<Integer> employeeIds, List<String> names)
+    public List<EmployeeEntity> customFindUsingEmpIdAndName(List<Integer> employeeIds, List<String> names)
     {
         return employeeRepository.customFindUsingEmpIdAndName(employeeIds,names);
     }
